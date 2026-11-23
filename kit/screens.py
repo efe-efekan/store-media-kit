@@ -144,7 +144,9 @@ html,body{{margin:0;width:{W}px;height:{H}px;overflow:hidden;background:{bottom}
 .t{{display:block;position:relative;white-space:nowrap;font-family:{fam};font-weight:{'800' if 'Baloo' in fam else '400'};line-height:1.0;letter-spacing:-.005em}}
 .t .o{{display:block;color:{ink};-webkit-text-stroke:{22*k:.0f}px {ink};text-shadow:0 {14*k:.0f}px 0 {ink}}}
 .t .f{{position:absolute;left:0;top:0}}
-.t b{{display:inline-block;font-weight:inherit;white-space:pre}}
+/* each letter box gets a margin of paint around it: a bowed (rotated) letter leans out of its box
+   and the gold fill (background-clip:text) is only painted inside the box */
+.t b{{display:inline-block;font-weight:inherit;white-space:pre;padding:0 .08em;margin:0 -.08em}}
 .t1 .f b{{background:linear-gradient(180deg,#fff7c2 0%,{gold_a} 42%,{gold_b} 100%);-webkit-background-clip:text;background-clip:text;color:transparent}}
 .t2 .f{{color:{line2}}}
 .cap{{display:flex;flex-direction:column;align-items:center;transform:rotate({tilt}deg) skewX({slant}deg)}}
@@ -160,8 +162,11 @@ html,body{{margin:0;width:{W}px;height:{H}px;overflow:hidden;background:{bottom}
   const l1 = document.getElementById('l1'), l2 = document.getElementById('l2');
   // One <b> per letter (same in the outline and the fill layer) so each line can bow upwards.
   const ARC = {arc};
+  // Scripts that join letters (Devanagari, Thai, Arabic… — any combining mark) stay one piece:
+  // splitting them breaks the shaping (dotted circles), so those lines are slanted but not bowed.
   const split = (el) => el.querySelectorAll('.o, .f').forEach((layer) => {{
-    const chars = [...layer.textContent];
+    const text = layer.textContent;
+    const chars = /[\p{{M}}\u0600-\u06FF\u0590-\u05FF]/u.test(text) ? [text] : [...text];
     layer.textContent = '';
     chars.forEach((c) => {{ const b = document.createElement('b'); b.textContent = c; layer.appendChild(b); }});
   }});
