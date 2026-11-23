@@ -24,7 +24,7 @@ in every language, from one small config file. Built to be driven by your AI ass
 
 | Output | Sizes | Store |
 | --- | --- | --- |
-| Screenshots with a bold keyword headline, your real app inside a device frame and a short caption | iPhone 6.9" **1320×2868** · iPad 13" **2064×2752** | App Store |
+| Screenshots in two styles: **framed** (keyword headline + your app in a device frame + caption) or **fullscreen** (the in-game screen fills the image, bold caption panel at the bottom — the classic game look) | iPhone 6.9" **1320×2868** · iPad 13" **2064×2752** | App Store |
 | The same screenshots for Android | phone **1080×1920** · 7" tablet **1200×1920** · 10" tablet **1600×2560** | Google Play |
 | Product page header (logo on your brand background) | **5244×2950** · **3840×1646** | App Store |
 | Feature graphic | **1024×500** | Google Play |
@@ -44,6 +44,8 @@ Two fictional demo apps ship in [`examples/`](examples) — a habit tracker and 
 you can try the whole pipeline before touching your own app.
 
 <img src="docs/images/examples.jpg" alt="Example screenshots for a habit tracker and a puzzle game" width="100%">
+
+The tile game mixes both styles: slides 2 and 4 use the **fullscreen** game layout (`"layout": "fullscreen"`).
 
 **One design, every device** — iPhone, iPad and Android from the same config:
 

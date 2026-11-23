@@ -43,6 +43,9 @@ python3 <kit>/kit.py fonts                     # once, if any locale is ja/ko/zh
 
 Fill `media.json` (reference: `docs/MEDIA-JSON.md`): `app`, `theme` colours, `devices`, 5 `slides`
 (tilt only 1–2 of them by ±3°), `store_locales` / `play_locales`, `header.logo`.
+Layout: `framed` (default: headline + device frame) or, common for **games**, `fullscreen` (the clean
+in-game screen fills the image, caption panel at the bottom; no buttons/HUD in the capture). Offer both
+and mix them per slide (`"layout": "fullscreen"` on 1–2 slides) if the user likes.
 
 ## 3. Capture clean screens
 

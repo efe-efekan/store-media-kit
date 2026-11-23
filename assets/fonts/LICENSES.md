@@ -10,6 +10,7 @@ sold on their own.
 | Anton | Vernon Adams | `anton-*.woff2`, license text `ANTON-OFL.txt` |
 | Archivo | Omnibus-Type | `archivo-*.woff2`, license text `ARCHIVO-OFL.txt` |
 | Fredoka | Milena Brandão, Hafontia | `fredoka-latin-wght-normal.woff2` |
+| Baloo 2 | Ek Type | `baloo-2-*.woff2`, license text `BALOO2-OFL.txt` |
 | Fira Sans Extra Condensed | Mozilla / Carrois | `fira-sans-extra-condensed-*.woff2` |
 | Noto Sans JP, KR, SC, TC, Thai, Devanagari, Arabic, Hebrew | Google | downloaded into `ext/` by `kit.py fonts` |
 

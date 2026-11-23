@@ -51,6 +51,27 @@ capture; `"keep"` for captures that have none, e.g. rendered by the app itself),
 top-corner decoration), `headline_weight` (900), `headline_stretch` (`"62%"`), `fallback_locale` (`"en"`),
 `raw_dir` (`"raw"`), `texts_dir` (`"texts"`), `out_dir` (`"out"`).
 
+### Layouts
+
+`"layout"` (top level, or per slide) picks the style:
+
+| Layout | Look | Best for |
+| --- | --- | --- |
+| `framed` (default) | big headline at the top, the capture inside a device frame, caption pill at the bottom | apps, and games that want a polished look |
+| `fullscreen` | the capture fills the whole image (no device frame), a rounded brand panel at the bottom with a two-line caption in a bold rounded font (line 1 gold, line 2 white) | **games**: the in-game screen speaks for itself |
+
+Mixing both in one set works well (e.g. slides 2 and 4 fullscreen). For `fullscreen`, use captures
+without buttons or HUD. Options:
+
+```json
+"fullscreen": { "panel_height": 0.2, "panel_top": "#2462e6", "panel_bottom": "#10338f", "panel_rim": "#ffd43b",
+                "outline": "#0b2a7a", "line1_colors": ["#ffd43b", "#ff9f1a"], "line2_color": "#ffffff",
+                "focus_y": 0, "font": "Baloo2", "upper": true }
+```
+`focus_y` = which part of a taller capture stays visible (0 top … 1 bottom); per slide `"focus_y"` too.
+`fs_decos` (per slide) = decorations for this layout. Captions come from the same `line1` / `line2`
+(the pill is not used).
+
 ### frame_png (optional)
 
 Use your own device bezel instead of the drawn frame:

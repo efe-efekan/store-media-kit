@@ -17,7 +17,7 @@ Google Play, her dilde, tek bir ayar dosyasından. Yapay zeka asistanınızla ku
 
 | Çıktı | Ölçü | Mağaza |
 | --- | --- | --- |
-| Büyük anahtar kelimeli başlık + cihaz çerçevesinde gerçek uygulama + kısa alt yazı | iPhone 6.9" **1320×2868** · iPad 13" **2064×2752** | App Store |
+| İki stil: **çerçeveli** (anahtar kelimeli başlık + cihaz çerçevesinde uygulama + alt yazı) ya da **tam ekran** (oyun içi ekran tüm görseli kaplar, altta kalın yazılı panel — klasik oyun görünümü) | iPhone 6.9" **1320×2868** · iPad 13" **2064×2752** | App Store |
 | Aynı görseller Android için | telefon **1080×1920** · 7" tablet **1200×1920** · 10" tablet **1600×2560** | Google Play |
 | Ürün sayfası header'ı (marka zemininde logo) | **5244×2950** · **3840×1646** | App Store |
 | Öne çıkan görsel (feature graphic) | **1024×500** | Google Play |

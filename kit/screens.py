@@ -100,7 +100,66 @@ def raw_capture(cfg, locale, device, n, slide):
     raise SystemExit(f'missing capture: {os.path.join(raw, locale, name)} (or {cfg.get("fallback_locale", "en")})')
 
 
+def page_fullscreen(cfg, locale, device, n, slide, text):
+    """"fullscreen" layout (common for games): the in-game capture fills the whole canvas, no device
+    frame, and a rounded brand panel at the bottom carries a two-line caption in a bold rounded font
+    (line 1 gold, line 2 white, both outlined). The capture should be clean: no buttons, no HUD."""
+    dev = DEVICES[device]
+    W, H = dev['w'], dev['h']
+    k = W / BASE_W
+    th = cfg['theme']
+    head, fam, lh, direction = font_css(locale)
+    fam = fam.replace('Archivo', cfg.get('fullscreen', {}).get('font', 'Baloo2'), 1)  # rounded game-style display face
+    sx, sy = W / BASE_W, H / BASE_H
+    decos = ''.join(deco_html(cfg, d, sx, sy, direction == 'rtl', locale) for d in slide.get('fs_decos', []))
+    shot = raw_capture(cfg, locale, device, n, slide)
+    fs = cfg.get('fullscreen', {})
+    panel_h = H * fs.get('panel_height', 0.2)
+    top = fs.get('panel_top', th['top'])
+    bottom = fs.get('panel_bottom', th['bottom'])
+    rim = fs.get('panel_rim', th['accent'])
+    ink = fs.get('outline', '#0b2a7a')
+    gold_a, gold_b = fs.get('line1_colors', [th['accent'], '#ff9f1a'])
+    line2 = fs.get('line2_color', '#ffffff')
+    focus = slide.get('focus_y', fs.get('focus_y', 0))  # 0 = keep the top of the capture, 1 = keep the bottom
+    l1, l2 = text.get('line1', ''), text.get('line2', '')
+    if fs.get('upper', True):
+        l1, l2 = l1.upper(), l2.upper()
+    return f'''<!doctype html><html lang="{locale}" dir="{direction}"><head><meta charset="utf-8">{head}<style>
+html,body{{margin:0;width:{W}px;height:{H}px;overflow:hidden;background:{bottom}}}
+.shot{{position:absolute;left:0;top:0;width:{W}px;height:{H - panel_h + 90*k:.0f}px;object-fit:cover;object-position:50% {focus*100:.0f}%}}
+.deco{{position:absolute;filter:drop-shadow(0 {26*k:.0f}px {30*k:.0f}px rgba(5,20,80,.45))}}
+.badge{{border-radius:50%;border:{12*k:.0f}px solid #fff}}
+.panel{{position:absolute;left:0;right:0;bottom:0;height:{panel_h:.0f}px;z-index:6;
+  border-radius:{90*k:.0f}px {90*k:.0f}px 0 0;background:linear-gradient(180deg,{top} 0%,{bottom} 100%);
+  border-top:{16*k:.0f}px solid {rim};box-shadow:0 -{18*k:.0f}px {40*k:.0f}px rgba(0,0,0,.28), inset 0 {10*k:.0f}px 0 rgba(255,255,255,.18);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 {60*k:.0f}px;box-sizing:border-box}}
+.t{{display:block;position:relative;white-space:nowrap;font-family:{fam};font-weight:800;line-height:.98;letter-spacing:-.005em}}
+.t .o{{display:block;color:{ink};-webkit-text-stroke:{22*k:.0f}px {ink};text-shadow:0 {14*k:.0f}px 0 {ink}}}
+.t .f{{position:absolute;left:0;top:0}}
+.t1 .f{{background:linear-gradient(180deg,#fff7c2 0%,{gold_a} 40%,{gold_b} 100%);-webkit-background-clip:text;background-clip:text;color:transparent}}
+.t2 .f{{color:{line2}}}
+</style></head><body>
+<img class="shot" src="{url(shot)}">
+{decos}
+<div class="panel" id="panel"><span class="t t1" id="l1"><span class="o">{l1}</span><span class="f">{l1}</span></span><span class="t t2" id="l2"><span class="o">{l2}</span><span class="f">{l2}</span></span></div>
+<script>
+(async () => {{
+  await document.fonts.ready;
+  const panel = document.getElementById('panel');
+  const maxW = panel.clientWidth - {120*k:.0f}, maxH = panel.clientHeight - {120*k:.0f};
+  const l1 = document.getElementById('l1'), l2 = document.getElementById('l2');
+  let s = {230*k:.0f};
+  const fit = () => {{ l1.style.fontSize = s + 'px'; l2.style.fontSize = s + 'px'; }};
+  fit();
+  while ((l1.scrollWidth > maxW || l2.scrollWidth > maxW || l1.offsetHeight + l2.offsetHeight > maxH) && s > 40) {{ s -= 4; fit(); }}
+}})();
+</script></body></html>'''
+
+
 def page(cfg, locale, device, n, slide, text):
+    if slide.get('layout', cfg.get('layout', 'framed')) == 'fullscreen':
+        return page_fullscreen(cfg, locale, device, n, slide, text)
     dev = DEVICES[device]
     W, H = dev['w'], dev['h']
     sx, sy = W / BASE_W, H / BASE_H

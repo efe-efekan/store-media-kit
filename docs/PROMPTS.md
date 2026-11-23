@@ -37,6 +37,14 @@ Capture the same 5 moments on the iPad simulator and an Android emulator (1080x1
 languages for each device and show me the sheets.
 ```
 
+## 3b. Full-screen game style
+
+```text
+Using store-media-kit, make slides <2 and 4> of ./store-media in the "fullscreen" layout: the clean
+in-game screen (no buttons, no HUD) fills the image and the caption sits on the bottom panel.
+Capture new clean frames if needed, render <en, tr> and show me both styles side by side.
+```
+
 ## 4. Preview video
 
 ```text

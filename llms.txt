@@ -7,7 +7,9 @@
 Repository: https://github.com/efe-efekan/store-media-kit
 
 ## What it makes
-- Screenshots: two-line keyword headline + the app's real capture in a device frame + a short caption pill.
+- Screenshots, two layouts: "framed" (two-line keyword headline + the app's real capture in a device frame +
+  a short caption pill) or "fullscreen" (games: the clean in-game capture fills the image, a rounded panel at
+  the bottom holds the two-line caption); set "layout" globally or per slide.
   Devices: iphone69 (1320x2868), ipad13 (2064x2752), android_phone (1080x1920), android_tablet7 (1200x1920),
   android_tablet10 (1600x2560).
 - App Store header 5244x2950 or 3840x1646; Google Play feature graphic 1024x500 (logo on brand background).
