@@ -1,0 +1,142 @@
+{
+  "_readme": "Every path is relative to this file. Field reference: docs/MEDIA-JSON.md in store-media-kit.",
+  "app": {
+    "name": "My App",
+    "bundle_id": "com.example.myapp"
+  },
+  "theme": {
+    "top": "#2462e6",
+    "mid": "#1a4cc4",
+    "bottom": "#10338f",
+    "glow": "rgba(140,190,255,.25)",
+    "headline": "#fff6dc",
+    "accent": "#ffd43b",
+    "shadow": "rgba(0,0,0,.18)",
+    "pill_bg": "#fff5d6",
+    "pill_ink": "#10338f",
+    "pill_edge": "#e0a800",
+    "confetti": [
+      "#ff4d5e",
+      "#ffb020",
+      "#ffd43b",
+      "#3dd68c",
+      "#3aa0ff",
+      "#a25cff",
+      "#ff6fb5",
+      "#28d0e0"
+    ],
+    "sparks": true
+  },
+  "devices": [
+    "iphone69"
+  ],
+  "fallback_locale": "en",
+  "slides": [
+    {
+      "tilt": 0,
+      "decos": []
+    },
+    {
+      "tilt": 3,
+      "decos": []
+    },
+    {
+      "tilt": 0,
+      "decos": []
+    },
+    {
+      "tilt": -3,
+      "decos": []
+    },
+    {
+      "tilt": 0,
+      "decos": []
+    }
+  ],
+  "_slides_help": "decos: [{\"src\": \"art/coin.png\", \"x\": -70, \"y\": 2330, \"w\": 300, \"rot\": -14, \"flip\": false, \"badge\": false}] in 1320x2868 design pixels. Keep only 1-2 slides tilted.",
+  "header": {
+    "logo": "art/logo.png",
+    "clouds": true
+  },
+  "store_locales": {
+    "en": [
+      "en-US",
+      "en-GB",
+      "en-AU",
+      "en-CA"
+    ]
+  },
+  "_store_locales_help": "text locale (texts/<key>.json) -> App Store Connect locales that get those screenshots. Locales without screenshots fall back to the primary language on the store.",
+  "video": {
+    "_help": "Media paths are relative to video/public. 886x1920 = 6.9\" iPhone App Preview; total must stay 15-30 s.",
+    "width": 886,
+    "height": 1920,
+    "fps": 30,
+    "transitions": "wipe",
+    "stripes": true,
+    "opening": {
+      "image": "art/opening.png",
+      "seconds": 2.4
+    },
+    "shots": [
+      {
+        "image": "raw/iphone69/en/01.png",
+        "seconds": 6,
+        "push": [
+          1.0,
+          1.04
+        ],
+        "_help": "replace with a screen recording: \"clip\": \"clips/clip1.mp4\""
+      },
+      {
+        "image": "raw/iphone69/en/02.png",
+        "seconds": 5.5,
+        "push": [
+          1.04,
+          1.0
+        ]
+      },
+      {
+        "image": "raw/iphone69/en/03.png",
+        "seconds": 5.5,
+        "push": [
+          1.0,
+          1.04
+        ]
+      }
+    ],
+    "crop": {
+      "scale": 1.0,
+      "origin": "50% 100%"
+    },
+    "end": {
+      "logo": "art/logo.png",
+      "stars": false,
+      "seconds": 3
+    },
+    "music_volume": 0.85,
+    "colors": {
+      "headline": "#ffffff",
+      "accent": "#ffd43b",
+      "shadow": "#0b3f9e"
+    },
+    "_music_help": "\"music\": \"audio/music.m4a\" (a file in video/public/; use music you have the rights to)"
+  },
+  "preview": {
+    "poster": "00:00:01:15",
+    "store_locales": [
+      "en-US",
+      "en-GB",
+      "en-AU",
+      "en-CA"
+    ],
+    "_help": "poster = frame shown before play (HH:MM:SS:FF); keep it on the opening title."
+  },
+  "play_locales": {
+    "en": [
+      "en-US",
+      "en-GB"
+    ]
+  },
+  "_devices_help": "Add ipad13, android_phone, android_tablet7, android_tablet10 as needed (captures in raw/<device>/en/)."
+}

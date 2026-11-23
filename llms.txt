@@ -1,0 +1,58 @@
+# store-media-kit
+
+> Open-source (MIT) toolkit that renders App Store and Google Play screenshots, the App Store product
+> page header, the Google Play feature graphic and app preview videos for any app (games and non-games),
+> in any language, from one media.json file per app. Python + headless Chrome for images, Remotion for video.
+
+Repository: https://github.com/efe-efekan/store-media-kit
+
+## What it makes
+- Screenshots: two-line keyword headline + the app's real capture in a device frame + a short caption pill.
+  Devices: iphone69 (1320x2868), ipad13 (2064x2752), android_phone (1080x1920), android_tablet7 (1200x1920),
+  android_tablet10 (1600x2560).
+- App Store header 5244x2950 or 3840x1646; Google Play feature graphic 1024x500 (logo on brand background).
+- Preview video: opening title -> real app shots (recordings or screenshots) with tap ripples -> logo end card;
+  886x1920 for App Store, 1080x1920 for Google Play/YouTube; 15-30 s.
+
+## Commands (run inside the store-media-kit folder)
+- python3 kit.py doctor                       check requirements (Python 3.9+, Pillow, Chrome; Node 20+ for video)
+- python3 kit.py init <folder>                new project: media.json, texts/en.json, raw/, art/
+- python3 kit.py fonts                        once, for ja/ko/zh/th/hi/ar/he
+- python3 kit.py check <project>              validate before rendering
+- python3 kit.py shots <project> [--device iphone69|ipad13|android_phone|android_tablet7|android_tablet10] [--locale en,de] [--slides 1,4]
+- python3 kit.py sheet <project> [--device D] one review image of every locale
+- python3 kit.py header <project> [--size 5244x2950|3840x1646]
+- python3 kit.py feature <project>            Google Play feature graphic
+- python3 kit.py video <project>              then: cd <project>/video && npm install && npm run render -- en [--preset play]
+- python3 kit.py fastlane <project> <fastlane-dir> [--device D]   copies renders into fastlane's folder layout
+
+## Project files
+- media.json: app {name, bundle_id}; theme {top, mid, bottom, glow, headline, accent, shadow, pill_bg, pill_ink,
+  pill_edge, confetti[], device_body}; devices[]; slides[5] {tilt, device_width, decos[{src, x, y, w, rot, flip, badge}]}
+  (coordinates in 1320x2868 design pixels); header {logo, logo_width, logo_width_wide, logo_top, logo_top_wide, clouds};
+  store_locales {textLocale: [App Store locales]}; play_locales {textLocale: [Play locales]};
+  video {opening{image, seconds}, shots[{clip|image, seconds, push[a,b], taps[{t,x,y}] or "file.json", focus{at, until, x, y, zoom}, trim}],
+  crop{scale, origin}, end{image, logo, logo_width, stars, seconds, background}, music, colors{headline, accent, shadow, confetti}};
+  preview {store_locales[], poster "HH:MM:SS:FF"}.
+- texts/<locale>.json: {"slides": [{"line1": "MATCH 3", "line2": "PUZZLE.", "pill": "TAP. MATCH. CLEAR."} x5],
+  "video": {"line1": "MATCH.", "line2": "COMBO. WIN."}}
+- raw/<device>/<locale>/01.png..05.png: clean real captures; raw/<device>/en/ is used for locales without their own.
+- art/: logo and decorations (the user's own artwork).
+
+## Caption rules
+Two short lines (<= ~14 chars each), keyword-first, no subtitle under the headline; pill <= 3 words;
+one different feature per slide; no numbers that will change; no unverifiable claims; write each
+language for its market, keep feature names exactly as the app shows them.
+
+## Safety
+Never upload to App Store Connect / Google Play without the user's explicit approval. Never write
+credentials into files; use env vars FASTLANE_USER, FASTLANE_TEAM_ID, SUPPLY_JSON_KEY. Use only the
+user's real app captures and their own artwork.
+
+## Docs
+- AGENTS.md: full step-by-step workflow for AI assistants
+- docs/PROMPTS.md: copy-paste prompts
+- docs/MEDIA-JSON.md: every config field
+- docs/CAPTURE.md: clean captures on iOS, Android, Flutter
+- docs/STORE-SPECS.md: App Store / Google Play sizes and limits
+- docs/DESIGN-RULES.md: what makes store screenshots convert

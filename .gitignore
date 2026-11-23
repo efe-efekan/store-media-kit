@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.DS_Store
+assets/fonts/ext/
+out/
+node_modules/
+examples/*/out/
+examples/*/video/

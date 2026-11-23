@@ -1,0 +1,33 @@
+{
+  "slides": [
+    {
+      "line1": "PUZZLE",
+      "line2": "MATCH 3.",
+      "pill": "TOUCHE. ASSOCIE. GAGNE."
+    },
+    {
+      "line1": "ÉNORMES",
+      "line2": "COMBOS.",
+      "pill": "RÉACTIONS EN CHAÎNE"
+    },
+    {
+      "line1": "DES MONDES",
+      "line2": "À OUVRIR.",
+      "pill": "NIVEAUX À DÉBLOQUER"
+    },
+    {
+      "line1": "BONUS",
+      "line2": "PUISSANTS.",
+      "pill": "BOMBE. ARC-EN-CIEL."
+    },
+    {
+      "line1": "CADEAUX",
+      "line2": "QUOTIDIENS.",
+      "pill": "REVIENS CHAQUE JOUR"
+    }
+  ],
+  "video": {
+    "line1": "ASSOCIE.",
+    "line2": "GAGNE."
+  }
+}

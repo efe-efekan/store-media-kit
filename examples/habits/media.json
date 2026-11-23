@@ -1,0 +1,210 @@
+{
+  "_readme": "Example project: a fictional habit tracker. Render it with: python3 kit.py shots examples/habits",
+  "app": {
+    "name": "Demo Habits",
+    "bundle_id": "com.example.demohabits"
+  },
+  "theme": {
+    "top": "#16b48a",
+    "mid": "#0f9d7a",
+    "bottom": "#086450",
+    "glow": "rgba(180,255,220,.28)",
+    "headline": "#ffffff",
+    "accent": "#ffe066",
+    "shadow": "rgba(0,40,30,.25)",
+    "pill_bg": "#fffbe6",
+    "pill_ink": "#086450",
+    "pill_edge": "#e3b800",
+    "confetti": [
+      "#ffffff",
+      "#ffe066",
+      "#b7ffd9"
+    ],
+    "confetti_opacity": 0.35
+  },
+  "devices": [
+    "iphone69",
+    "ipad13",
+    "android_phone"
+  ],
+  "slides": [
+    {
+      "tilt": 0,
+      "decos": [
+        {
+          "src": "art/flame.png",
+          "x": 1120,
+          "y": -40,
+          "w": 230,
+          "rot": 12
+        }
+      ]
+    },
+    {
+      "tilt": 3,
+      "decos": [
+        {
+          "src": "art/trophy.png",
+          "x": 1110,
+          "y": -30,
+          "w": 240,
+          "rot": -8
+        }
+      ]
+    },
+    {
+      "tilt": 0,
+      "decos": [
+        {
+          "src": "art/check.png",
+          "x": 1130,
+          "y": -20,
+          "w": 210,
+          "rot": 10
+        }
+      ]
+    },
+    {
+      "tilt": -3,
+      "decos": []
+    },
+    {
+      "tilt": 0,
+      "decos": [
+        {
+          "src": "art/flame.png",
+          "x": -60,
+          "y": 2350,
+          "w": 260,
+          "rot": -12
+        }
+      ]
+    }
+  ],
+  "header": {
+    "logo": "art/logo.png"
+  },
+  "store_locales": {
+    "en": [
+      "en-US",
+      "en-GB"
+    ],
+    "es": [
+      "es-ES",
+      "es-MX"
+    ],
+    "de": [
+      "de-DE"
+    ],
+    "ja": [
+      "ja"
+    ],
+    "tr": [
+      "tr"
+    ],
+    "ar": [
+      "ar-SA"
+    ]
+  },
+  "play_locales": {
+    "en": [
+      "en-US",
+      "en-GB"
+    ],
+    "es": [
+      "es-ES",
+      "es-419"
+    ],
+    "de": [
+      "de-DE"
+    ],
+    "ja": [
+      "ja-JP"
+    ],
+    "tr": [
+      "tr-TR"
+    ],
+    "ar": [
+      "ar"
+    ]
+  },
+  "video": {
+    "width": 886,
+    "height": 1920,
+    "fps": 30,
+    "transitions": "slide",
+    "stripes": false,
+    "opening": {
+      "image": "art/opening.png",
+      "seconds": 2.4
+    },
+    "shots": [
+      {
+        "image": "raw/iphone69/en/01.png",
+        "seconds": 5.5,
+        "push": [
+          1.0,
+          1.05
+        ],
+        "taps": [
+          {
+            "t": 1.2,
+            "x": 0.88,
+            "y": 0.42
+          },
+          {
+            "t": 2.6,
+            "x": 0.88,
+            "y": 0.6
+          }
+        ]
+      },
+      {
+        "image": "raw/iphone69/en/02.png",
+        "seconds": 5.0,
+        "push": [
+          1.05,
+          1.0
+        ]
+      },
+      {
+        "image": "raw/iphone69/en/05.png",
+        "seconds": 5.0,
+        "push": [
+          1.0,
+          1.06
+        ],
+        "taps": [
+          {
+            "t": 2.0,
+            "x": 0.5,
+            "y": 0.66
+          }
+        ]
+      }
+    ],
+    "end": {
+      "logo": "art/logo.png",
+      "logo_width": 760,
+      "stars": false,
+      "seconds": 3,
+      "background": "linear-gradient(180deg,#16b48a,#086450)"
+    },
+    "colors": {
+      "headline": "#ffffff",
+      "accent": "#ffe066",
+      "shadow": "#065a47",
+      "confetti": [
+        "#ffffff",
+        "#ffe066",
+        "#b7ffd9"
+      ]
+    }
+  },
+  "preview": {
+    "store_locales": [
+      "en-US"
+    ],
+    "poster": "00:00:01:15"
+  }
+}

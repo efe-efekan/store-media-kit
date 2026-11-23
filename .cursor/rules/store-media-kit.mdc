@@ -1,0 +1,8 @@
+---
+description: How to use store-media-kit to make App Store and Google Play screenshots, banners and preview videos
+alwaysApply: true
+---
+
+Follow AGENTS.md at the repository root: ask about the app first, capture clean real screens, write short
+keyword-driven captions per language, render with `python3 kit.py shots`, review with `kit.py sheet`,
+and never upload or store credentials without the user's explicit approval.

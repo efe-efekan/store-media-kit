@@ -1,0 +1,210 @@
+{
+  "_readme": "Example project: a fictional tile-matching puzzle game. Render it with: python3 kit.py shots examples/tiles",
+  "app": {
+    "name": "Demo Tiles",
+    "bundle_id": "com.example.demotiles"
+  },
+  "theme": {
+    "top": "#7b4dff",
+    "mid": "#5a2ee0",
+    "bottom": "#2c1080",
+    "glow": "rgba(255,180,255,.28)",
+    "headline": "#ffffff",
+    "accent": "#ffd43b",
+    "shadow": "rgba(20,0,60,.3)",
+    "pill_bg": "#fff5d6",
+    "pill_ink": "#3b1a99",
+    "pill_edge": "#e0a800"
+  },
+  "devices": [
+    "iphone69",
+    "ipad13",
+    "android_phone"
+  ],
+  "slides": [
+    {
+      "tilt": 0,
+      "decos": [
+        {
+          "src": "art/gem.png",
+          "x": 1110,
+          "y": -50,
+          "w": 250,
+          "rot": 14
+        },
+        {
+          "src": "art/star.png",
+          "x": -60,
+          "y": 2380,
+          "w": 240,
+          "rot": -10
+        }
+      ]
+    },
+    {
+      "tilt": 3,
+      "decos": [
+        {
+          "src": "art/star.png",
+          "x": 1120,
+          "y": -40,
+          "w": 230,
+          "rot": -12
+        }
+      ]
+    },
+    {
+      "tilt": 0,
+      "decos": [
+        {
+          "src": "art/gem.png",
+          "x": 1130,
+          "y": -30,
+          "w": 210,
+          "rot": -8
+        }
+      ]
+    },
+    {
+      "tilt": -3,
+      "decos": [
+        {
+          "src": "art/bomb.png",
+          "x": 1100,
+          "y": -60,
+          "w": 260,
+          "rot": 10
+        }
+      ]
+    },
+    {
+      "tilt": 0,
+      "decos": [
+        {
+          "src": "art/gem.png",
+          "x": -50,
+          "y": 2360,
+          "w": 250,
+          "rot": 12
+        }
+      ]
+    }
+  ],
+  "header": {
+    "logo": "art/logo.png"
+  },
+  "store_locales": {
+    "en": [
+      "en-US",
+      "en-GB",
+      "en-AU"
+    ],
+    "fr": [
+      "fr-FR",
+      "fr-CA"
+    ],
+    "ko": [
+      "ko"
+    ],
+    "pt-BR": [
+      "pt-BR"
+    ]
+  },
+  "play_locales": {
+    "en": [
+      "en-US",
+      "en-GB"
+    ],
+    "fr": [
+      "fr-FR",
+      "fr-CA"
+    ],
+    "ko": [
+      "ko-KR"
+    ],
+    "pt-BR": [
+      "pt-BR"
+    ]
+  },
+  "video": {
+    "width": 886,
+    "height": 1920,
+    "fps": 30,
+    "transitions": "wipe",
+    "stripes": true,
+    "opening": {
+      "image": "art/opening.png",
+      "seconds": 2.4
+    },
+    "shots": [
+      {
+        "image": "raw/iphone69/en/01.png",
+        "seconds": 5.0,
+        "push": [
+          1.0,
+          1.05
+        ],
+        "taps": [
+          {
+            "t": 1.0,
+            "x": 0.31,
+            "y": 0.42
+          },
+          {
+            "t": 2.4,
+            "x": 0.56,
+            "y": 0.52
+          }
+        ]
+      },
+      {
+        "image": "raw/iphone69/en/02.png",
+        "seconds": 4.6,
+        "push": [
+          1.05,
+          1.0
+        ],
+        "taps": [
+          {
+            "t": 1.4,
+            "x": 0.5,
+            "y": 0.43
+          }
+        ]
+      },
+      {
+        "image": "raw/iphone69/en/04.png",
+        "seconds": 5.0,
+        "push": [
+          1.0,
+          1.05
+        ],
+        "taps": [
+          {
+            "t": 1.6,
+            "x": 0.17,
+            "y": 0.84
+          }
+        ]
+      }
+    ],
+    "end": {
+      "logo": "art/logo.png",
+      "logo_width": 760,
+      "stars": true,
+      "seconds": 3,
+      "background": "radial-gradient(circle at 50% 30%,#7b5cff,#3b1a99 60%,#24105f)"
+    },
+    "colors": {
+      "headline": "#ffffff",
+      "accent": "#ffd43b",
+      "shadow": "#2c1080"
+    }
+  },
+  "preview": {
+    "store_locales": [
+      "en-US"
+    ],
+    "poster": "00:00:01:15"
+  }
+}

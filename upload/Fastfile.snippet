@@ -1,0 +1,44 @@
+# Paste into your app's fastlane/Fastfile (inside `platform :ios do`).
+# Screenshots come from `python3 <kit>/kit.py fastlane <project> fastlane/screenshots [--device ipad13]`.
+
+  desc "Upload only the store screenshots in fastlane/screenshots/<locale>/ (texts untouched)"
+  lane :upload_screenshots_only do
+    deliver(
+      skip_binary_upload: true,
+      skip_metadata: true,
+      skip_app_version_update: true,
+      overwrite_screenshots: true,   # replaces every screenshot of the locales in the folder
+      force: true,                   # no HTML preview / confirmation
+      ignore_language_directory_validation: true,
+      run_precheck_before_submit: false
+    )
+  end
+
+  desc "Upload only the store texts in fastlane/metadata/<locale>/"
+  lane :upload_texts_only do
+    deliver(
+      skip_binary_upload: true,
+      skip_screenshots: true,
+      force: true,
+      ignore_language_directory_validation: true,
+      run_precheck_before_submit: false
+    )
+  end
+
+# ---------- Google Play (fastlane supply) ----------
+# Screenshots: python3 <kit>/kit.py fastlane <project> fastlane/metadata/android --device android_phone
+# (also android_tablet7 / android_tablet10; the feature graphic is copied when out/header/feature_graphic.png exists)
+# Paste inside `platform :android do`:
+
+  desc "Upload only the Play store images in fastlane/metadata/android/<locale>/images/"
+  lane :upload_play_images do
+    supply(
+      skip_upload_apk: true,
+      skip_upload_aab: true,
+      skip_upload_metadata: true,
+      skip_upload_changelogs: true,
+      skip_upload_images: false,
+      skip_upload_screenshots: false,
+      json_key: ENV["SUPPLY_JSON_KEY"]   # Google Play service-account key file (never commit it)
+    )
+  end

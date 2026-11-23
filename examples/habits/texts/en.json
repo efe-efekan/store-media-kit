@@ -1,0 +1,33 @@
+{
+  "slides": [
+    {
+      "line1": "BUILD BETTER",
+      "line2": "HABITS.",
+      "pill": "TRACK. CHECK. GROW."
+    },
+    {
+      "line1": "SEE YOUR",
+      "line2": "PROGRESS.",
+      "pill": "WEEKLY HABIT STATS"
+    },
+    {
+      "line1": "KEEP YOUR",
+      "line2": "STREAK.",
+      "pill": "DAILY STREAK TRACKER"
+    },
+    {
+      "line1": "NEVER MISS",
+      "line2": "A DAY.",
+      "pill": "SMART REMINDERS"
+    },
+    {
+      "line1": "FOCUS",
+      "line2": "TIMER.",
+      "pill": "DEEP WORK SESSIONS"
+    }
+  ],
+  "video": {
+    "line1": "SMALL STEPS.",
+    "line2": "BIG LIFE."
+  }
+}

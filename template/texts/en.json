@@ -1,0 +1,10 @@
+{
+  "slides": [
+    { "line1": "MAIN", "line2": "KEYWORD.", "pill": "SHORT. CLEAR. BENEFIT." },
+    { "line1": "SECOND", "line2": "FEATURE.", "pill": "WHAT IT DOES" },
+    { "line1": "THIRD", "line2": "FEATURE.", "pill": "WHY IT MATTERS" },
+    { "line1": "FOURTH", "line2": "FEATURE.", "pill": "ONE. TWO. THREE." },
+    { "line1": "LAST", "line2": "HOOK.", "pill": "TRY IT TODAY" }
+  ],
+  "video": { "line1": "SHORT", "line2": "HOOK." }
+}
