@@ -25,7 +25,9 @@
   "devices": [
     "iphone69",
     "ipad13",
-    "android_phone"
+    "android_phone",
+    "android_tablet7",
+    "android_tablet10"
   ],
   "slides": [
     {

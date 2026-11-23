@@ -14,7 +14,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.dirname(HERE))
 from kit.common import DEVICES, render_html  # noqa: E402
 
-SIZES = {d: (DEVICES[d]['w'], DEVICES[d]['h']) for d in ('iphone69', 'ipad13', 'android_phone')}
+SIZES = {d: (DEVICES[d]['w'], DEVICES[d]['h']) for d in DEVICES}  # every supported device
 
 BASE_CSS = '''
 html,body{margin:0;width:100%;height:100%;overflow:hidden;font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
