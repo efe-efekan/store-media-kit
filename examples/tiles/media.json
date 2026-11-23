@@ -208,5 +208,7 @@
       "en-US"
     ],
     "poster": "00:00:01:15"
-  }
+  },
+  "status_bar": "keep",
+  "_status_bar_help": "example captures are generated without a status bar"
 }

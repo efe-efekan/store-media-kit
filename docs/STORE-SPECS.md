@@ -16,6 +16,7 @@ Always double-check the official pages before a release — stores change their 
 | Format | PNG or JPEG, RGB, no transparency | |
 
 Languages without their own screenshots or video use the primary language's.
+Show only your app: no system status bar, no other apps, no device UI from the simulator.
 
 ## Google Play
 

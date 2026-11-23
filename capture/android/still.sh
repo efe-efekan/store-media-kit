@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Clean screenshot of an Android emulator or device: demo-mode status bar (12:00, full
-# battery, full signal, no notifications), then a PNG.
+# Screenshot of an Android emulator or device in demo mode (no notification icons, fixed clock and
+# battery). The status bar is still in the PNG; `kit.py shots` removes it (store images must not show it).
 #   capture/android/still.sh <out.png> [adb-serial]
 # Use a 1080x1920 (or any 9:16) emulator for phone shots; tablets: 1200x1920 / 1600x2560.
 set -euo pipefail

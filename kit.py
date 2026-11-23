@@ -121,10 +121,16 @@ def cmd_video(a):
     for s in v.get('shots', []):
         refs += [s.get('clip'), s.get('image'), s.get('taps') if isinstance(s.get('taps'), str) else None]
     copied = 0
+    raw_dir = cfg.get('raw_dir', 'raw')
     for r in filter(None, refs):
         src = common.project_path(cfg, r)
         dst = os.path.join(vdst, 'public', r)
-        if os.path.exists(src) and not os.path.exists(dst):
+        if os.path.exists(src):
+            parts = r.replace('\\', '/').split('/')
+            if len(parts) > 2 and parts[0] == raw_dir and parts[1] in common.DEVICES:
+                src = common.clean_capture(cfg, src, parts[1])  # screenshots: status bar removed
+            elif os.path.exists(dst):
+                continue
             os.makedirs(os.path.dirname(dst), exist_ok=True)
             shutil.copy(src, dst)
             copied += 1
@@ -269,12 +275,18 @@ def cmd_check(a):
                 errors.append(str(e))
     for i, slide in enumerate(cfg.get('slides', []), 1):
         for d in slide.get('decos', []):
-            if not os.path.exists(common.project_path(cfg, d['src'])):
-                errors.append(f'slide {i}: missing decoration {d["src"]}')
+            srcs = [d['src']]
+            if '{locale}' in d['src']:  # per-language image: check every text locale
+                srcs = [d['src'].replace('{locale}', loc) for loc in common.text_locales(cfg)] or [d['src']]
+            for src in srcs:
+                if not os.path.exists(common.project_path(cfg, src)):
+                    errors.append(f'slide {i}: missing decoration {src}')
     for key in ('store_locales', 'play_locales'):
         mapped = set(cfg.get(key, {}))
         for loc in mapped - set(common.text_locales(cfg)):
             errors.append(f'{key}: "{loc}" has no texts/{loc}.json')
+    if cfg.get('status_bar', 'remove') == 'keep':
+        warnings.append('"status_bar": "keep" - make sure no capture shows a clock, battery or signal (stores may reject it)')
     for w in warnings:
         print('warning:', w)
     for e in errors:

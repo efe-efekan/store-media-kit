@@ -11,7 +11,7 @@ Layout (designed on the 1320x2868 iPhone canvas, scaled for other devices):
 import os
 import random
 
-from .common import DEVICES, font_css, image_size, load_texts, project_path, render_html, url
+from .common import DEVICES, clean_capture, font_css, image_size, load_texts, project_path, render_html, url
 
 BASE_W, BASE_H = 1320, 2868
 
@@ -75,8 +75,11 @@ def device_html(cfg, shot, dev, slide, k):
             f'{notch}</div>')
 
 
-def deco_html(cfg, d, sx, sy, rtl=False):
-    src = project_path(cfg, d['src'])
+def deco_html(cfg, d, sx, sy, rtl=False, locale='en'):
+    # "{locale}" in src picks a per-language image, e.g. "art/{locale}_badge.png".
+    src = project_path(cfg, d['src'].replace('{locale}', locale))
+    if '{locale}' in d['src'] and not os.path.exists(src):
+        src = project_path(cfg, d['src'].replace('{locale}', cfg.get('fallback_locale', 'en')))
     if rtl and cfg.get('mirror_rtl', True):  # right-to-left: decorations swap sides with the headline
         d = dict(d, x=BASE_W - d['x'] - d['w'], rot=-d.get('rot', 0))
     t = f'rotate({d.get("rot", 0)}deg)' + (' scaleX(-1)' if d.get('flip') else '')
@@ -86,13 +89,14 @@ def deco_html(cfg, d, sx, sy, rtl=False):
 
 
 def raw_capture(cfg, locale, device, n, slide):
-    """raw/<device>/<locale>/NN.png, else raw/<device>/en/NN.png (captures without text serve every locale)."""
+    """raw/<device>/<locale>/NN.png, else raw/<device>/en/NN.png (captures without text serve every
+    locale), with the system status bar removed (common.clean_capture)."""
     raw = project_path(cfg, cfg.get('raw_dir', 'raw'), device)
     name = slide.get('raw', f'{n:02d}.png')
     for loc in (locale, cfg.get('fallback_locale', 'en')):
         p = os.path.join(raw, loc, name)
         if os.path.exists(p):
-            return p
+            return clean_capture(cfg, p, device)
     raise SystemExit(f'missing capture: {os.path.join(raw, locale, name)} (or {cfg.get("fallback_locale", "en")})')
 
 
@@ -103,7 +107,7 @@ def page(cfg, locale, device, n, slide, text):
     k = sx
     th = cfg['theme']
     head, fam, lh, direction = font_css(locale)
-    decos = ''.join(deco_html(cfg, d, sx, sy, direction == 'rtl') for d in slide.get('decos', []))
+    decos = ''.join(deco_html(cfg, d, sx, sy, direction == 'rtl', locale) for d in slide.get('decos', []))
     shot = raw_capture(cfg, locale, device, n, slide)
     weight = cfg.get('headline_weight', 900)
     stretch = cfg.get('headline_stretch', '62%')

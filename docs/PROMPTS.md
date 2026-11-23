@@ -90,5 +90,6 @@ Then run the commands it gives you in a terminal inside the `store-media-kit` fo
 
 - Give it **your store keywords** (or your current App Store / Play listing link) — captions get much stronger.
 - Say what **must not** appear (beta features, prices, personal data, a competitor's name).
+- Ask it to confirm **no status bar** (clock, battery, signal) is visible in any image or video frame.
 - Ask it to **show the sheet** after every change; judge on the sheet, not on single files.
 - Approve uploads one store at a time.

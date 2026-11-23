@@ -12,18 +12,21 @@ FONTS = os.path.join(ASSETS, 'fonts')
 EXT_FONTS = os.path.join(FONTS, 'ext')  # downloaded by `kit.py fonts`, not committed
 
 # Store canvas sizes (portrait). `frame`: phone | tablet. `notch`: island | punch | none.
+# `status_bar`: height in px of the system status bar (clock, battery, signal) at the native
+# size; the kit removes it from every capture (see clean_capture) because a visible status bar
+# can get a listing rejected and always looks unfinished.
 DEVICES = {
     # Apple App Store
-    'iphone69': dict(w=1320, h=2868, frame='phone', notch='island', store='apple',
+    'iphone69': dict(w=1320, h=2868, frame='phone', notch='island', store='apple', status_bar=168,
                      asc='APP_IPHONE_67', label='iPhone 6.9"'),
-    'ipad13': dict(w=2064, h=2752, frame='tablet', notch='none', store='apple',
+    'ipad13': dict(w=2064, h=2752, frame='tablet', notch='none', store='apple', status_bar=52,
                    asc='APP_IPAD_PRO_3GEN_129', label='iPad 13"'),
     # Google Play
-    'android_phone': dict(w=1080, h=1920, frame='phone', notch='punch', store='google',
+    'android_phone': dict(w=1080, h=1920, frame='phone', notch='punch', store='google', status_bar=72,
                           play='phoneScreenshots', label='Android phone'),
-    'android_tablet7': dict(w=1200, h=1920, frame='tablet', notch='none', store='google',
+    'android_tablet7': dict(w=1200, h=1920, frame='tablet', notch='none', store='google', status_bar=64,
                             play='sevenInchScreenshots', label='Android 7" tablet'),
-    'android_tablet10': dict(w=1600, h=2560, frame='tablet', notch='none', store='google',
+    'android_tablet10': dict(w=1600, h=2560, frame='tablet', notch='none', store='google', status_bar=72,
                              play='tenInchScreenshots', label='Android 10" tablet'),
 }
 
@@ -191,3 +194,33 @@ def font_css(locale):
         fam = f'Archivo, {name}, sans-serif'
         lh = '1.18' if key in TALL else '1.05'
     return head, fam, lh, ('rtl' if key in RTL else 'ltr')
+
+
+def clean_capture(cfg, path, device):
+    """Returns a copy of the capture without the system status bar (clock, battery, signal).
+
+    The top `status_bar` pixels (scaled to the capture's width) are replaced by the row just
+    below them, stretched upwards, so a coloured header or background simply continues to the
+    top edge. media.json "status_bar": "remove" (default) | "keep" (captures rendered by the app
+    itself, e.g. Flutter integration-test screenshots, have no status bar); per device override:
+    "status_bar_px": {"iphone69": 180}. Cached in out/.clean/."""
+    mode = cfg.get('status_bar', 'remove')
+    if mode == 'keep':
+        return path
+    from PIL import Image
+    dev = DEVICES[device]
+    with Image.open(path) as im:
+        im = im.convert('RGB')
+        band = (cfg.get('status_bar_px') or {}).get(device, dev.get('status_bar', 0))
+        band = round(band * im.width / dev['w'])
+        if band <= 0 or band >= im.height // 4:
+            return path
+        rel = os.path.relpath(os.path.abspath(path), cfg['_dir']).replace(os.sep, '_').replace('..', '_')
+        out = project_path(cfg, cfg.get('out_dir', 'out'), '.clean', f'{band}_{rel}')
+        if os.path.exists(out) and os.path.getmtime(out) >= os.path.getmtime(path):
+            return out
+        os.makedirs(os.path.dirname(out), exist_ok=True)
+        src_row = im.crop((0, band + 2, im.width, band + 3)).resize((im.width, band + 2))
+        im.paste(src_row, (0, 0))
+        im.save(out)
+    return out

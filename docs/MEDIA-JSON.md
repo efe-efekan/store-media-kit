@@ -45,7 +45,9 @@ Complete examples: [`examples/habits/media.json`](../examples/habits/media.json)
 | `raw` | capture file name (default `NN.png` for slide N) |
 | `decos` | your own small artwork in the corners. `x`, `y`, `w` are in **1320×2868 design pixels** and scale to every device. `badge: true` draws a white round border (for avatars). Decorations mirror automatically for right-to-left languages (`"mirror_rtl": false` to disable). |
 
-Top-level options: `headline_right` (default 186, space kept free beside the headline for a
+Top-level options: `status_bar` (`"remove"` default: the system status bar is stripped from every
+capture; `"keep"` for captures that have none, e.g. rendered by the app itself), `status_bar_px`
+(per-device band height override, e.g. `{ "iphone69": 200 }`), `headline_right` (default 186, space kept free beside the headline for a
 top-corner decoration), `headline_weight` (900), `headline_stretch` (`"62%"`), `fallback_locale` (`"en"`),
 `raw_dir` (`"raw"`), `texts_dir` (`"texts"`), `out_dir` (`"out"`).
 
@@ -108,7 +110,7 @@ Apple locale codes: `en-US`, `de-DE`, `fr-FR`, `ja`, `zh-Hans`… Google Play co
 | `shots[].taps` | tap ripples: inline list or a JSON file `{ "events": [ { "t", "x", "y" } ] }` (seconds; x/y 0–1) |
 | `shots[].focus` | glide-in zoom between `at` and `until` seconds towards `x`, `y` (0 = top edge) |
 | `shots[].trim` | skip the first seconds of a clip |
-| `crop` | zoom every clip, e.g. `{ "scale": 1.062, "origin": "50% 100%" }` hides a simulator's Dynamic Island |
+| `crop` | zoom every clip, e.g. `{ "scale": 1.07, "origin": "50% 100%" }` keeps a simulator's status bar and Dynamic Island out of frame (screenshots used as shots are cleaned automatically) |
 | `end` | logo end card; `stars: true` adds three bouncing stars (nice for games) |
 | `music` | an audio file in `video/public/`; it fades in and out |
 

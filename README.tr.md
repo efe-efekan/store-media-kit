@@ -27,6 +27,7 @@ Google Play, her dilde, tek bir ayar dosyasından. Yapay zeka asistanınızla ku
 - **Oyunlar ve oyun dışı uygulamalar** için. Uygulamanın gerçek ekranları kullanılır, sahte tasarım yok.
 - **Her dil**: başlıklar kutuya sığacak şekilde küçülür; Türkçe `İ` doğru büyür; Japonca, Korece, Çince,
   Tayca, Hintçe, Arapça ve İbranice için doğru fontlar gelir; sağdan sola dillerde düzen aynalanır.
+- **Durum çubuğu otomatik kaldırılır**: saat, pil ve sinyal mağaza görsellerinde görünmez.
 - Uygulama başına tek `media.json`. Bir yazı değişince her şeyi saniyeler içinde yeniden üretirsiniz.
 
 ## En kolay yol: yapay zekaya yaptırın
@@ -85,6 +86,8 @@ Bütün komutlar, yükleme adımları ve SSS için İngilizce [README.md](README
 - **İki kısa satır, anahtar kelime önde.** "ARABA PARK / BULMACASI." gibi.
 - **Başlığın altına alt metin yok**; alttaki kısa yazı (pill) yeterli.
 - **Her görsel farklı bir ekran ve özellik** göstersin; ilk görsel en güçlü mesajınız.
+- **Durum çubuğu (saat, pil, sinyal) görünmesin**; reddedilme sebebi olabilir. Kit bunu her ekran
+  görüntüsünden otomatik kaldırır, videolarda `video.crop` ile dışarıda bırakılır.
 - **Değişebilecek sayı yazmayın** (bölüm sayısı, kullanıcı sayısı), kanıtlayamayacağınız iddia yok.
 - **Her dili o pazar için yazın**, birebir çeviri değil.
 

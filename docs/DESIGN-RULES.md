@@ -13,7 +13,8 @@ Learned the hard way while shipping real apps. The defaults of the kit already f
 5. **Every slide a different moment.** Never the same screen twice; one feature per slide.
 6. **Tilt sparingly.** One or two slides at ±3° add rhythm; tilting all of them looks messy.
 7. **One strong brand colour.** A single bold gradient beats patterns; light confetti at most.
-8. **Clean captures.** No debug banners, no notifications, no half-loaded states, realistic tidy data.
+8. **Clean captures, no status bar.** No clock / battery / signal bar (the kit removes it), no debug
+   banners, no notifications, no half-loaded states, realistic tidy data.
    For games, avoid HUD clutter (score popups, combo text, menus) in the capture.
 9. **Your own art only.** Small decorations from your app in the corners; never other brands.
 10. **No numbers that change** (level counts, prices, user counts) and no claims you can't keep.
@@ -24,6 +25,7 @@ Learned the hard way while shipping real apps. The defaults of the kit already f
 
 1. **Text only at the start.** A short title, then only real use of the app.
 2. **Calm camera.** Slow push, gentle zoom towards the action; no fast cuts or shaky motion.
+   No status bar in any frame (crop it out of recordings).
 3. **Show touches.** Tap ripples or a pointing hand make it obvious what the user does.
 4. **End on the logo** and let the music fade out — never stop abruptly.
 5. **Poster frame on the title**, not on a random frame.

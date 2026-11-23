@@ -31,6 +31,8 @@
     "iphone69"
   ],
   "fallback_locale": "en",
+  "status_bar": "remove",
+  "_status_bar_help": "remove = strip the clock/battery/signal bar from captures (store-safe). keep = only for captures that have none.",
   "slides": [
     {
       "tilt": 0,
@@ -106,7 +108,7 @@
       }
     ],
     "crop": {
-      "scale": 1.0,
+      "scale": 1.07,
       "origin": "50% 100%"
     },
     "end": {
@@ -120,7 +122,8 @@
       "accent": "#ffd43b",
       "shadow": "#0b3f9e"
     },
-    "_music_help": "\"music\": \"audio/music.m4a\" (a file in video/public/; use music you have the rights to)"
+    "_music_help": "\"music\": \"audio/music.m4a\" (a file in video/public/; use music you have the rights to)",
+    "_crop_help": "1.07 from the bottom keeps a simulator's status bar and Dynamic Island out of screen recordings"
   },
   "preview": {
     "poster": "00:00:01:15",

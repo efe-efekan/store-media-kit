@@ -39,6 +39,12 @@ Repository: https://github.com/efe-efekan/store-media-kit
 - raw/<device>/<locale>/01.png..05.png: clean real captures; raw/<device>/en/ is used for locales without their own.
 - art/: logo and decorations (the user's own artwork).
 
+## Status bar
+Never show the system status bar (clock, battery, signal) in store images or videos: it can get a listing
+rejected. The kit removes it from captures by default (media.json "status_bar": "remove"; "keep" only for
+captures without one). For screen recordings use video.crop (iPhone {"scale": 1.07, "origin": "50% 100%"}).
+Always check rendered sheets and video frames.
+
 ## Caption rules
 Two short lines (<= ~14 chars each), keyword-first, no subtitle under the headline; pill <= 3 words;
 one different feature per slide; no numbers that will change; no unverifiable claims; write each

@@ -18,6 +18,10 @@ Reply in the user's language. Keep them in the loop: show results, ask before an
 - **Use real captures of the user's app.** Never invent UI, never mock a screen, never use another
   company's artwork, logos or characters.
 - Don't commit the user's `out/`, raw captures with personal data, or anything under `node_modules/`.
+- **No system status bar in any store image or video** (clock, battery, signal, carrier, notification
+  icons). It looks unfinished and is a common reason for a rejected or flagged listing. The kit strips
+  it from every capture by default (`"status_bar": "remove"`); still check every sheet and every video
+  frame, and crop or recapture if one shows through.
 - Run `python3 kit.py check <project>` before rendering and fix every error it prints.
 
 ## 1. Learn the app (ask, don't guess)
@@ -44,7 +48,13 @@ Fill `media.json` (reference: `docs/MEDIA-JSON.md`): `app`, `theme` colours, `de
 
 Follow `docs/CAPTURE.md`. Targets: iPhone `raw/iphone69/en/NN.png` 1320×2868 (iPhone 6.9" simulator),
 iPad `raw/ipad13/en/` 2064×2752, Android `raw/android_phone/en/` 1080×1920.
-- iOS: `capture/ios/still.sh <udid> <out.png>` (sets 9:41, full battery). Android: `capture/android/still.sh <out.png>`.
+- iOS: `capture/ios/still.sh <udid> <out.png>`. Android: `capture/android/still.sh <out.png>`.
+- **Status bar:** simulator/emulator captures contain one; the kit removes it (top band replaced by the
+  app's own colour). Set `"status_bar": "keep"` only for captures the app renders itself without one
+  (e.g. Flutter integration-test screenshots). If an app draws its own clock/battery-like UI at the very
+  top, check the result. Screen **recordings** for the video still contain the status bar: hide it with
+  `video.crop` (iPhone: `{ "scale": 1.07, "origin": "50% 100%" }`) or record with the app's own
+  screenshot mode, and confirm on rendered frames that no clock or battery is visible.
 - Hide debug banners, test data, personal names/e-mails, notifications, sign-in walls. Use tidy, realistic demo content.
 - For games, prefer moments without heavy HUD clutter; show different moments on every slide.
 - If UI has no text, one English set serves every language; otherwise capture per locale (`raw/<device>/<locale>/`).
@@ -70,7 +80,7 @@ python3 <kit>/kit.py check <project>
 python3 <kit>/kit.py shots <project> --locale en           # then --device ipad13 / android_phone
 python3 <kit>/kit.py sheet <project> --locale en           # out/sheet_<device>.jpg
 ```
-Look at the sheet yourself before showing it: headline readable, device big, nothing cut off,
+Look at the sheet yourself before showing it: **no status bar anywhere**, headline readable, device big, nothing cut off,
 decorations not covering the app, every slide different. Show the user **English (+ their own
 language)** first; render the other languages only after they approve.
 
@@ -91,6 +101,7 @@ cd <project>/video && npm install && npm run render -- en              # App Sto
 npm run render -- en --preset play                                     # Google Play / YouTube 1080×1920
 ```
 - Text only in the opening title; after that only real use of the app. Calm camera, no fast cuts.
+- No status bar in any frame (see section 3): check frames of the rendered video before showing it.
 - 15–30 s total (Apple). End card with the logo, music fades out.
 - Shots can be screen recordings (`clip`) or screenshots (`image`); add `taps` for ripples.
 - After uploading to Apple, set the poster frame on the opening title (`upload/set_poster.rb`).
@@ -108,6 +119,7 @@ Use `LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8` with fastlane when texts are not ASCII
 
 | Symptom | Fix |
 | --- | --- |
+| Clock / battery / signal visible | capture had a status bar and `"status_bar"` is `"keep"`, or the device's band is too small: set `"status_bar": "remove"` or raise `"status_bar_px": {"<device>": 200}`; videos: increase `video.crop.scale` |
 | Tofu boxes / wrong glyphs in ja/ko/zh/th/hi/ar/he | `python3 kit.py fonts`, render again |
 | Headline tiny | caption too long: shorten `line1`/`line2` (`kit.py check` warns at 22 chars) |
 | Capture cropped / stretched | wrong size: recapture on the right simulator / emulator (`kit.py check` warns) |

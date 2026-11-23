@@ -34,6 +34,7 @@ in every language, from one small config file. Built to be driven by your AI ass
 - Works for **games and non-game apps** alike. Your app's real captures, no mock-ups.
 - **Every language**: headlines shrink to fit, Turkish `İ` and German `ß` uppercase correctly, Japanese,
   Korean, Chinese, Thai, Hindi, Arabic and Hebrew get proper fonts, right-to-left layouts flip.
+- **Store-safe captures**: the system status bar (clock, battery, signal) is removed automatically.
 - One `media.json` per app. Re-render everything after a caption change in seconds.
 - Plain Python + headless Chrome for images, [Remotion](https://www.remotion.dev) for video. No accounts, no cloud.
 
@@ -170,6 +171,8 @@ Screenshot text is not indexed by store search, but it decides whether people ta
 - **No numbers that will change** (level counts, user counts) and no claims you can't keep.
 - **Localise, don't translate**: write for each market's own search words. Ask your AI for this —
   see [docs/PROMPTS.md](docs/PROMPTS.md#2-captions-in-many-languages).
+- **No status bar** (clock, battery, signal) — it looks unfinished and can get a listing rejected.
+  The kit strips it from every capture automatically.
 - Clean captures: no debug banners, no notifications, real but tidy data.
 
 More: [docs/DESIGN-RULES.md](docs/DESIGN-RULES.md).

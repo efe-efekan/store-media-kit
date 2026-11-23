@@ -6,6 +6,8 @@ Aim for: the exact store size, a tidy status bar, real but neat content, nothing
 ## Checklist (every platform)
 
 - [ ] Right size: iPhone **1320×2868**, iPad **2064×2752**, Android phone **1080×1920**, 7" **1200×1920**, 10" **1600×2560**
+- [ ] **No system status bar** (clock, battery, signal, carrier, notification icons) in the final images.
+      The kit removes it automatically from simulator/emulator captures; check the rendered sheet anyway.
 - [ ] No debug banner, dev menu, FPS meter, test watermark
 - [ ] No notifications, no real names / e-mails / phone numbers, no personal photos
 - [ ] Realistic demo data (a filled list, a nice level, a profile with an avatar)
@@ -24,8 +26,13 @@ xcrun simctl list devices booted                          # find the UDID
 capture/ios/still.sh <udid> my-app/store-media/raw/iphone69/en/01.png
 capture/ios/record.sh <udid> my-app/store-media/video/public/clips/clip1.mp4    # press Enter to stop
 ```
-`still.sh` sets the status bar to 9:41, full battery and full signal. Simulator recordings include the
-Dynamic Island area; set `"crop": { "scale": 1.062, "origin": "50% 100%" }` in `media.json → video`.
+The screenshot still contains the status bar; `kit.py shots` removes it (the top band is replaced by the
+row of pixels just under it, so your header colour simply continues). `still.sh` also sets a neutral
+9:41 / full battery in case you use the raw PNG elsewhere.
+
+**Recordings** include the status bar and the Dynamic Island: set
+`"crop": { "scale": 1.07, "origin": "50% 100%" }` in `media.json → video` so both stay outside the frame,
+then check a few rendered frames.
 
 ## Android (emulator or device, any OS with adb)
 
@@ -36,7 +43,8 @@ adb devices                                               # emulator or USB devi
 capture/android/still.sh my-app/store-media/raw/android_phone/en/01.png
 capture/android/record.sh my-app/store-media/video/public/clips/clip1.mp4      # press Enter to stop
 ```
-Both turn on Android's **demo mode** (12:00, full battery and signal, no notification icons) while capturing.
+Both turn on Android's **demo mode** (no notification icons, fixed clock and battery) while capturing;
+the kit then removes the status bar from the screenshots. For recordings, use `video.crop` like on iOS.
 
 ## Flutter, React Native and others
 
