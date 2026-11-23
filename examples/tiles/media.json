@@ -217,7 +217,8 @@
     "panel_height": 0.2,
     "outline": "#2c1080",
     "panel_top": "#7b4dff",
-    "panel_bottom": "#3b1a99"
+    "panel_bottom": "#3b1a99",
+    "font": "TitanOne"
   },
   "_layout_help": "Slides 2 and 4 use the full-screen game layout (no device frame, caption panel at the bottom)."
 }

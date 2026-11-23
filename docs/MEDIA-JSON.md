@@ -64,11 +64,22 @@ Mixing both in one set works well (e.g. slides 2 and 4 fullscreen). For `fullscr
 without buttons or HUD. Options:
 
 ```json
-"fullscreen": { "panel_height": 0.2, "panel_top": "#2462e6", "panel_bottom": "#10338f", "panel_rim": "#ffd43b",
-                "outline": "#0b2a7a", "line1_colors": ["#ffd43b", "#ff9f1a"], "line2_color": "#ffffff",
-                "focus_y": 0, "font": "Baloo2", "upper": true }
+"fullscreen": { "panel_height": 0.2, "panel_curve": 150, "panel_top": "#2462e6", "panel_bottom": "#10338f",
+                "panel_rim": "#ffd43b", "outline": "#0b2a7a", "line1_colors": ["#ffd43b", "#ff9f1a"],
+                "line2_color": "#ffffff", "font": "TitanOne", "slant": -9, "arc": 0.1, "tilt": 0,
+                "focus_y": 0, "upper": true }
 ```
-`focus_y` = which part of a taller capture stays visible (0 top … 1 bottom); per slide `"focus_y"` too.
+| Key | Meaning |
+| --- | --- |
+| `panel_height` | panel height as a fraction of the image |
+| `panel_curve` | how high the panel's top edge bows up like a dome (px on the 1320 px design); `0` = flat |
+| `font` | `TitanOne` (default, bubbly game lettering), `LuckiestGuy` (cartoon), `Baloo2` (rounded), `Fredoka`, `Archivo` |
+| `slant` | forward lean of the letters in degrees (negative = leans right) |
+| `arc` | how much each caption line bows upwards (fraction of the font size); `0` = straight |
+| `tilt` | rotates the whole caption (degrees) |
+| `focus_y` | which part of a taller capture stays visible (0 top … 1 bottom); also per slide |
+
+Per slide: `caption_slant`, `caption_arc`, `caption_tilt`, `focus_y`.
 `fs_decos` (per slide) = decorations for this layout. Captions come from the same `line1` / `line2`
 (the pill is not used).
 
